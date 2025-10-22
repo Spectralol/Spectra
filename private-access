@@ -1,3 +1,38 @@
+local whitelisted_HWIDs = {
+    ["b3bdf5d109ea03434422bbe5185740682cff4a5f3c975137e58a65b30dd142c9"] = true,
+    ["0d30fd65ad7ad25d3f2e1a4aaa0739d62bd3ccfaf39ce49d2afc477291318794"] = true,
+    ["8d744d05ec55e8986a87819942f2de749f1a01fc23abe1461f2d88d21a38040f"] = true,
+    ["620a359fdf83da9fe755e76a58caaeeaacc20db1deefce6e2b5d8b3261d0efb1"] = true,
+    ["633989ea636297b4f8c1fd5abdd23c781d5bd638d53e18402e29189959dee976b53132519493a0fb593a9b10a0b608aa"] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+}
+
+local hwid
+pcall(function()
+    hwid = gethwid() -- If your executor uses a different function, change this!
+end)
+
+if hwid and whitelisted_HWIDs[hwid] then
+    -- Show a special notification to the whitelisted user
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Private Access",
+        Text = "Welcome, Spectra user!",
+        Duration = 5
+    })
+else
+    -- Optionally halt execution for non-whitelisted users
+    while true do end
+end
 local Players = game:GetService("Players")
 local localPlayer = Players.LocalPlayer
 local HttpService = game:GetService("HttpService")
